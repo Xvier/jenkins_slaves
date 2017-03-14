@@ -11,7 +11,8 @@ RUN mkdir /var/run/sshd \
 && adduser -S -h /home/jenkins -s /bin/sh jenkins && echo "jenkins:jenkins" | chpasswd \
 && sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-
+RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk'  >> /home/jenkins/.profile \
+&& echo 'export PATH=$JAVA_HOME/bin:$PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin'  >> /home/jenkins/.profile
 
 EXPOSE 22
 
